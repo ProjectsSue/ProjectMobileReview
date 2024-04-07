@@ -1,27 +1,42 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, TextInput, View } from 'react-native';
-import ItemTitle from './Item/Title';
-import ItemImage from './Item/Image';
-import ItemRating from './Item/Rating';
-import ItemDescription from './Item/Description';
-import React from 'react';
+import { View, StyleSheet } from 'react-native';
+import Item from './Components/Item/index';
+import React, { Component } from 'react';
+import * as Font from 'expo-font';
+import AppLoading from './AppLoading';
 
-export default function App() {
-  return (
-    <View style={styles.container}>
-      <ItemTitle name='Item Name'/>
-      <ItemImage imageSource='https://d33wubrfki0l68.cloudfront.net/554c3b0e09cf167f0281fda839a5433f2040b349/ecfc9/img/header_logo.svg'/>
-      <ItemRating rate='50'/>
-      <ItemDescription description='This is a description'/>
-      <StatusBar style="auto" />
-    </View>
-  );
+export default class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = { loading: true };
+  }
+
+  async componentDidMount() {
+    await Font.loadAsync({
+      Roboto: require('./resources/fonts/Roboto-Regular.ttf'),
+      Roboto_medium: require('./resources/fonts/Roboto-Medium.ttf'),
+    }),
+    this.setState({ loading: false });
+  }
+  render () {
+    if (this.state['loading']) {
+      return (
+        <View>
+          <AppLoading />
+        </View>
+      );
+    } else {
+      return (
+        <View style={styles.container}>
+          <Item imageSource={'https://m.media-amazon.com/images/I/51d3RdYrfTL.jpg'}/>
+        </View>
+      );
+    }
+  }
 }
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
     alignItems: 'center',
-    justifyContent: 'center',
   }
 });

@@ -9,18 +9,26 @@
     "web": "expo start --web"
   },
   "dependencies": {
-    "expo": "~48.0.18",
-    "expo-status-bar": "~1.4.4",
+    "@expo/webpack-config": "^19.0.0",
+    "@ionic/react": "^7.8.3",
+    "expo": "^49.0.23",
+    "expo-status-bar": "~1.11.1",
     "react": "18.2.0",
-    "react-native": "0.71.8"
+    "react-dom": "18.2.0",
+    "react-icons": "^5.0.1",
+    "react-native": "0.73.6",
+    "react-native-ionicons": "^4.6.5",
+    "react-native-reanimated": "~3.3.0",
+    "react-native-web": "~0.19.6"
   },
   "devDependencies": {
-    "@babel/core": "^7.20.0",
-    "@tsconfig/react-native": "^3.0.2",
-    "@types/jest": "^29.5.3",
-    "@types/react": "^18.2.14",
-    "@types/react-test-renderer": "^18.0.0",
-    "typescript": "^5.1.6"
+    "@babel/core": "^7.24.0",
+    "@tsconfig/react-native": "^3.0.3",
+    "@types/jest": "^29.5.12",
+    "@types/react": "^18.2.65",
+    "@types/react-test-renderer": "^18.0.7",
+    "metro-config": "^0.80.7",
+    "typescript": "^5.4.2"
   },
   "private": true
 }
