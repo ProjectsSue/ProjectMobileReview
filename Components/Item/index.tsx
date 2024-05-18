@@ -10,7 +10,7 @@ import MainButton from '../globalComponents/MainButton';
 const windowWidth = Dimensions.get('window').width;
 const imageHeight = 500;
 
-const Item = (props) => {
+const Item = ({navigation, route}) => {
   const scrollRef = useAnimatedRef<Animated.ScrollView>();
   const scrollOffset = useScrollViewOffset(scrollRef);
   const imageAnimatedStyle = useAnimatedStyle(() => {
@@ -37,23 +37,20 @@ const Item = (props) => {
       <Animated.ScrollView ref={scrollRef} scrollEventThrottle={16}>
         <Animated.Image 
           style={[styles.parallax, imageAnimatedStyle]}
-          source={{uri: props.imageSource}}
+          source={{uri: route.params.imageSource}}
         />
         <Info createdAt='October 25, 2022' infoFields={[{name: 'views', value: 10 }]}/>
         <ItemTitle title='El Principe' author='Nicolas Maquiavelo'/>
         <ReviewSection reviews={[{id: 1, authorName: 'Manuel j', authorPicture: 'https://media.licdn.com/dms/image/C5603AQFbSDxrJfdN_A/profile-displayphoto-shrink_400_400/0/1527881412699?e=1717027200&v=beta&t=ciS9vq6_-2nTTlw-HwHGdlqdsWd5qo4LuvhZCNioxgk', rating: 87, review: 'Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem.'}, 
                     {id: 2, authorName: 'Manuel j', authorPicture: 'https://media.licdn.com/dms/image/C5603AQFbSDxrJfdN_A/profile-displayphoto-shrink_400_400/0/1527881412699?e=1717027200&v=beta&t=ciS9vq6_-2nTTlw-HwHGdlqdsWd5qo4LuvhZCNioxgk', rating: 97, review: 'Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem.'},
-                    {id: 3, authorName: 'Manuel j', authorPicture: 'https://media.licdn.com/dms/image/C5603AQFbSDxrJfdN_A/profile-displayphoto-shrink_400_400/0/1527881412699?e=1717027200&v=beta&t=ciS9vq6_-2nTTlw-HwHGdlqdsWd5qo4LuvhZCNioxgk', rating: 37, review: 'Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem.'}]}
+                    {id: 3, authorName: 'Manuel j', authorPicture: 'https://media.licdn.com/dms/image/C5603AQFbSDxrJfdN_A/profile-displayphoto-shrink_400_400/0/1527881412699?e=1717027200&v=beta&t=ciS9vq6_-2nTTlw-HwHGdlqdsWd5qo4LuvhZCNioxgk', rating: 37, review: 'Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem.'},
+                    {id: 1, authorName: 'Manuel j', authorPicture: 'https://media.licdn.com/dms/image/C5603AQFbSDxrJfdN_A/profile-displayphoto-shrink_400_400/0/1527881412699?e=1717027200&v=beta&t=ciS9vq6_-2nTTlw-HwHGdlqdsWd5qo4LuvhZCNioxgk', rating: 17, review: 'Neque porro quisquam'}]}
         />
-        <MainButton title='Write your Review' color='#141619' onPress={() => props.navigation.goBack()}/>
+        <MainButton title='Write your Review' color='#141619' onPress={() => navigation.navigate('CommentForm')}/>
       </Animated.ScrollView>
     </View>
   );
 }
-
-Item.propTypes = {
-    imageSource: PropTypes.string.isRequired,
-};
 
 const styles = StyleSheet.create({
     container: {

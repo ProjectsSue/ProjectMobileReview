@@ -1,20 +1,19 @@
 import PropTypes from 'prop-types'; 
 import React from 'react';
-import { Dimensions, StyleSheet, View } from 'react-native';
+import { Dimensions, StyleSheet, View, Text } from 'react-native';
 import baseStyles from '../../baseStyles'
-import TextRoboto from '../globalComponents/TextRoboto';
 
 const windowWidth = Dimensions.get('window').width;
 
 const ItemTitle = (props) => {
   return (
-    <View style={baseStyles.whiteBackground}>
-      <TextRoboto style={styles.mainTitle}>
+    <View style={baseStyles.whiterBackground}>
+      <Text style={styles.mainTitle}>
         {props.title}
-      </TextRoboto>
-      <TextRoboto style={[styles.author, baseStyles.greyColor]}>
+      </Text>
+      <Text style={[styles.author, baseStyles.greyColor]}>
         {props.author}
-      </TextRoboto>
+      </Text>
       <View style={[baseStyles.marginLeft25, baseStyles.marginRight25, styles.separatingBarLong]}/>
     </View>
   );

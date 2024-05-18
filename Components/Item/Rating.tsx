@@ -5,7 +5,7 @@ import baseStyles from '../../baseStyles';
 
 const ItemRating = (props) => {
   return (
-    <View style={baseStyles.whiteBackground}>
+    <View style={baseStyles.whiterBackground}>
       <Text style={styles.ratingLabel}>Rating</Text>
       <View style={styles.ratingBar}/>
       <TextInput 

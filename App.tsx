@@ -3,6 +3,10 @@ import Item from './Components/Item/index';
 import React, { Component } from 'react';
 import * as Font from 'expo-font';
 import AppLoading from './AppLoading';
+import baseStyles from './baseStyles';
+import {NavigationContainer} from '@react-navigation/native';
+import StackNavegator from './StackNavigator';
+
 
 export default class App extends Component {
   constructor(props) {
@@ -20,15 +24,17 @@ export default class App extends Component {
   render () {
     if (this.state['loading']) {
       return (
-        <View>
-          <AppLoading />
-        </View>
+        <NavigationContainer>
+          <View>
+            <AppLoading />
+          </View>
+        </NavigationContainer>
       );
     } else {
       return (
-        <View style={styles.container}>
-          <Item imageSource={'https://m.media-amazon.com/images/I/51d3RdYrfTL.jpg'}/>
-        </View>
+        <NavigationContainer>
+          <StackNavegator/>
+        </NavigationContainer>
       );
     }
   }

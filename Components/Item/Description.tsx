@@ -5,7 +5,7 @@ import baseStyles from '../../baseStyles';
 
 const ItemDescription = (props) => {
   return (
-    <View style={baseStyles.whiteBackground}>
+    <View style={baseStyles.whiterBackground}>
       <TextInput style={styles.description} defaultValue={props.description}/>
     </View>
   );

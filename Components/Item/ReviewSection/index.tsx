@@ -10,7 +10,7 @@ const ReviewSection = (props) => {
   ));
 
   return (
-    <View style={[baseStyles.whiteBackground, baseStyles.alignCenter]}>
+    <View style={[baseStyles.whiterBackground, baseStyles.alignCenter]}>
       {InfoListText}
     </View>
   );

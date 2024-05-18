@@ -1,62 +1,62 @@
 import PropTypes from 'prop-types'; 
 import React, { useState } from 'react';
-import { StyleSheet, Image, Text, LayoutChangeEvent, View } from 'react-native';
-import TextRoboto from '../../globalComponents/TextRoboto';
+import { StyleSheet, Image, LayoutChangeEvent, View, Text } from 'react-native';
 import baseStyles from '../../../baseStyles';
 import Animated, { useAnimatedStyle, useSharedValue, withTiming } from 'react-native-reanimated';
 import Ionicons from '@expo/vector-icons/Ionicons';
 
 const ReviewCard = (props) => {
-  const [height, setHeight] = useState(0);
+  const [expandedHeight, setExpandedHeight] = useState(0);
   const [expanded, setExpanded] = useState(false);
   const animatedHeight = useSharedValue(0);
 
   const onLayout = (event: LayoutChangeEvent) => {
-    console.log(event.nativeEvent)
-    console.log(event.nativeEvent.layout.height)
     const onLayoutHeight = event.nativeEvent.layout.height;
 
-    if (onLayoutHeight > 0 && height !== onLayoutHeight) {
-      setHeight(onLayoutHeight);
+    if (onLayoutHeight > 0 && expandedHeight !== onLayoutHeight) {
+      setExpandedHeight(onLayoutHeight);
     }
   };
 
   const collapsableStyle = useAnimatedStyle(() => {
-    animatedHeight.value = expanded ? withTiming(height) : withTiming(100);
+    animatedHeight.value = expanded ? withTiming(expandedHeight) : withTiming(35);
 
     return {
       height: animatedHeight.value,
     };
-  }, [expanded, height]);
+  }, [expanded, expandedHeight]);
   
 const ExpandIcon = () => {
-  console.log(height)
-    if (height > 20) {
+    if (expandedHeight > 35) {
       return (
         <View style={[styles.icon]}>
-          <Ionicons name="chevron-down-outline" onPress={() => setExpanded(!expanded)} size={16} color="grey" style={[baseStyles.marginRight10]}/>
+          <Ionicons name={expanded ? "chevron-up-outline" : "chevron-down-outline" }
+                    onPress={() => setExpanded(!expanded)}
+                    size={16}
+                    color="grey"
+                    style={[baseStyles.marginRight10]}/>
         </View>
       )
     }
   }
   return (
-    <Animated.View style={[baseStyles.whiteBackground, baseStyles.card, styles.cardList, { overflow: "hidden" }]}>
+    <Animated.View style={[baseStyles.whiterBackground, baseStyles.card, styles.cardList, { overflow: "hidden" }]}>
       <View style={[baseStyles.flexRow, baseStyles.alignCenter]}>
         <Image style={styles.authorPicture} source={{uri: props.review.authorPicture}}/>
         <View style={[baseStyles.flexColumn, baseStyles.justifyCenter]}>
-          <TextRoboto style={[baseStyles.minorTitle]}>
+          <Text style={[baseStyles.minorTitle]}>
             {props.review.authorName}
-          </TextRoboto>
-          <TextRoboto style={[baseStyles.minorSubtitle, baseStyles.greyColor]}>
+          </Text>
+          <Text style={[baseStyles.minorSubtitle, baseStyles.greyColor]}>
             Rating: {props.review.rating}
-          </TextRoboto>
+          </Text>
         </View>
         <ExpandIcon/>
       </View>
       <Animated.View style={[collapsableStyle, styles.overflow]}>
-        <TextRoboto style={[baseStyles.marginLeft25, baseStyles.marginBottom5]} onLayout={onLayout}>
+        <Text style={[baseStyles.marginLeft25, baseStyles.paddingBottom10, baseStyles.absolute]} onLayout={onLayout}>
           {props.review.review}
-        </TextRoboto>
+        </Text>
       </Animated.View>
     </Animated.View>
   );

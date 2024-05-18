@@ -1,9 +1,15 @@
 import { StyleSheet } from 'react-native';
 
 export default StyleSheet.create({
-  whiteBackground: {
+  whiterBackground: {
     display: 'flex',
-    backgroundColor: '#fff'
+    backgroundColor: '#F7F7F7'
+  },
+  softBackground: {
+    backgroundColor: '#EEEEF5'
+  },
+  absolute: {
+    position: 'absolute',
   },
   greyColor: {
     color: '#afafaa'
@@ -17,6 +23,9 @@ export default StyleSheet.create({
   marginBottom10: {
     marginBottom: 10,
   },
+  marginRight2: {
+    marginRight: 2,
+  },
   marginRight5: {
     marginRight: 5,
   },
@@ -26,6 +35,9 @@ export default StyleSheet.create({
   marginRight25: {
     marginRight: 25,
   },
+  marginLeft2: {
+    marginLeft: 2,
+  },
   marginLeft5: {
     marginLeft: 5,
   },
@@ -34,6 +46,9 @@ export default StyleSheet.create({
   },
   marginLeft25: {
     marginLeft: 25,
+  },
+  paddingBottom10: {
+    paddingBottom: 10,
   },
   card: {
     backgroundColor: '#fff',

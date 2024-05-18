@@ -1,22 +1,21 @@
 import PropTypes from 'prop-types'; 
 import React from 'react';
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet, View, Text } from 'react-native';
 import baseStyles from '../../baseStyles'
-import TextRoboto from './TextRoboto';
 
 const ItemTitle = (props) => {
     const InfoListText = props.infoFields.map(infoField => (
-    <TextRoboto key={infoField['name']} style={[baseStyles.greyColor, baseStyles.marginRight5]}>
+    <Text key={infoField['name']} style={[baseStyles.greyColor, baseStyles.marginRight5]}>
         <View style={styles.separatingBar}/>
         {infoField['icon']} {infoField['value']} {infoField['name']}
-    </TextRoboto>
+    </Text>
   ));
 
   return (
-    <View style={[baseStyles.whiteBackground, styles.info]}>
-      <TextRoboto style={[baseStyles.greyColor, baseStyles.marginRight5, baseStyles.marginLeft5]}>
+    <View style={[baseStyles.whiterBackground, styles.info]}>
+      <Text style={[baseStyles.greyColor, baseStyles.marginRight5, baseStyles.marginLeft5]}>
         {props.createdAt}
-      </TextRoboto>
+      </Text>
       {InfoListText}
     </View>
   );
