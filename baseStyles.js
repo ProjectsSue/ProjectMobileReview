@@ -103,7 +103,14 @@ export default StyleSheet.create({
   image: {
     width: 120,
     height: 180,
-    borderRadius: 12
+    borderRadius: 12,
+    borderColor: '#000',
+    borderWidth: 10,
+    borderRadius: 10,
+  },
+  imageLogo: {
+    width: 180,
+    height: 180
   },
   fontSize10: {
     fontSize: 10,

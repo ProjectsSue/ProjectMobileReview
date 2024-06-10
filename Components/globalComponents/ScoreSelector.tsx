@@ -1,41 +1,46 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { View, StyleSheet, TextInput } from 'react-native';
 import PieChart from 'react-native-pie-chart'
 import baseStyles from '../../baseStyles';
+import PropTypes from 'prop-types'; 
+import { CategoryContext } from '../../appContexts';
+import cssConsts from '../../cssConsts';
 
-
-const ScoreSelector = () => {
-  const [score, setScore] = useState(30);
+const ScoreSelector = (props) => {
+  const currentCategory = useContext(CategoryContext).currentCategory;
 
   const handleScoreChange = (newScore: string) => {
     if (Number(newScore) > 100) {
-      setScore(100);
+      props.scoreUpdateHanlder(100);
       return;
     }
     if (isNaN(Number(newScore)) || Number(newScore) < 0){
-      setScore(0);
+      props.scoreUpdateHanlder(0);
       return;
     }
-    setScore(Number(newScore));
+    props.scoreUpdateHanlder(Number(newScore));
   };
-  const sliceColor=['#f28500', '#DFDFDF'];
+  const sliceColor=[cssConsts[currentCategory+'Color'], cssConsts.darkerColor];
 
   return (
     <View style={styles.container}>
-      {/* <View style={[styles.scoreThumb, {top: `${score}%`}]}>
-        <View style={styles.scoreContainer}>
-          <TextInput style={styles.scoreText}>{score}</TextInput>
-        </View>
-      </View> */}
       <PieChart
-        series={[score, 100 - score]}
+        series={[props.score, 100 - props.score]}
         sliceColor={sliceColor}
         coverRadius={0.8}
-        coverFill={'#f7f7f7'} 
+        coverFill={cssConsts.whiterColor} 
         widthAndHeight={100}/>
-      <TextInput style={styles.scoreText}>{score}</TextInput>
+      <TextInput style={styles.scoreText}
+        onChangeText={text => handleScoreChange(text)}>
+        {props.score}
+      </TextInput>
     </View>
   );
+};
+
+ScoreSelector.propTypes = {
+  score: PropTypes.string,
+  scoreUpdateHanlder: PropTypes.func
 };
 
 const styles = StyleSheet.create({
@@ -62,6 +67,9 @@ const styles = StyleSheet.create({
     backgroundColor: 'black',
   },
   scoreText: {
+    position: 'absolute',
+    top: 38,
+    left: 38,
     fontSize: 16,
   },
 });

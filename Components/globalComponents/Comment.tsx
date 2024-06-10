@@ -2,9 +2,9 @@ import React from 'react';
 import { StyleSheet, TextInput, View } from 'react-native';
 import baseStyles from '../../baseStyles';
 import I18n from '../../locales';
+import PropTypes from 'prop-types'; 
 
 const Comment = (props) => {
-  const [value, onChangeText] = React.useState(I18n.t('bookReviewForm.reviewPlaceholder'));
   const incomingStyle = Array.isArray(props.style) ? props.style : [props.style];
   return ( 
     <View style={[styles.comment, ...incomingStyle]}>
@@ -13,12 +13,17 @@ const Comment = (props) => {
         multiline
         rows={10}
         maxLength={40}
-        onChangeText={text => onChangeText(text)}
-        value={value}
+        onChangeText={text => props.textUpdateHanlder(text)}
+        value={props.commentText}
         style={[{padding: 10}, baseStyles.darkerBackground, baseStyles.inputForm]}
       />
     </View>
   )
+};
+
+Comment.propTypes = {
+  commentText: PropTypes.string,
+  textUpdateHanlder: PropTypes.func
 };
 
 const styles = StyleSheet.create({

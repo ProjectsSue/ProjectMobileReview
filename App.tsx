@@ -1,25 +1,29 @@
+import 'react-native-gesture-handler';
 import { View, StyleSheet } from 'react-native';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, createContext } from 'react';
 import AppLoading from './AppLoading';
-import StackNavigator from './StackNavigator';
+import DrawerNavigator from './DrawerNavigator';
 import { NavigationContainer } from '@react-navigation/native';
-import { User, onAuthStateChanged } from 'firebase/auth';
+import { onAuthStateChanged } from 'firebase/auth';
 import { firebaseAuth } from './firebaseConfig';
 import Login from './screens/login';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 import baseStyles from './baseStyles';
+import { UserContext, CategoryContext } from './appContexts';
+import { singleQuery } from './Utils/firestoreQuery';
+
 const Stack = createNativeStackNavigator();
 
 const App = () => {
   const [loading, setLoading] = useState(false);
-  const [user, setUser] = useState<User | null>(undefined);
-
+  const [user, setUser] = useState(undefined);
+  const [currentCategory, setCurrentCategory] = useState('book');
     useEffect(() => {
       const unsubscribe = onAuthStateChanged(firebaseAuth, async (user) => {
-        const rawValue = {uid: user.uid};
-        await AsyncStorage.setItem('@user', JSON.stringify(rawValue));
-        setUser(user);
+        singleQuery('Users', user.uid).then((firestoreUser) => {
+          setUser(firestoreUser);
+          setLoading(false);
+        });
       });
       return unsubscribe;
     }, []);
@@ -34,11 +38,11 @@ const App = () => {
   } else {
     return (
       <NavigationContainer>
-        { user ? <StackNavigator/> :
-          <Stack.Navigator initialRouteName='Login'>
-            <Stack.Screen name='Login' component={Login}/>
-          </Stack.Navigator>
-        }
+          { user ? <UserContext.Provider value={user}><CategoryContext.Provider value={{currentCategory, setCurrentCategory}}><DrawerNavigator/></CategoryContext.Provider></UserContext.Provider>:
+            <Stack.Navigator initialRouteName='Login'>
+              <Stack.Screen name='Login' component={Login}/>
+            </Stack.Navigator>
+          }
       </NavigationContainer>
     );
   }

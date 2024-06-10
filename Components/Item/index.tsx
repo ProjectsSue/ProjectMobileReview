@@ -14,26 +14,34 @@ const windowWidth = Dimensions.get('window').width;
 const imageHeight = 500;
 
 const Item = ({navigation, route}) => {
-  const [loadingComments, setLoadingComments] = useState(true);
   const [loadingItem, setLoadingItem] = useState(true);
+  const [itemId, setItemId] = useState('');
+  if (route.params.itemId !== itemId) {
+    setLoadingItem(true); 
+    setItemId(route.params.itemId);
+  }
+  const [loadingComments, setLoadingComments] = useState(true);
   const [comments, setComments] = useState([]);
   const [item, setItem] = useState({});
   const scrollRef = useAnimatedRef<Animated.ScrollView|null>();
 
   useEffect(() => {
+    setLoadingItem(true);
     firestore()
       .collection('Items')
-      .doc(route['params']['itemId'])
+      .doc(itemId)
       .get()
       .then(documentSnapshot => {  
         setItem(documentSnapshot.data());
         setLoadingItem(false);
       });
-  }, []);
+  }, [itemId]);
+
   useEffect(() => {
+    setLoadingComments(true);
     const subscriber = firestore()
       .collection('Comments')
-      .where('itemId', '==', route['params']['itemId'])
+      .where('itemId', '==', itemId)
       .onSnapshot(querySnapshot => {
         const commentList = [];
         const userIds = [];
@@ -60,13 +68,13 @@ const Item = ({navigation, route}) => {
         setLoadingComments(false);
       });
     return () => subscriber();
-  }, []);
+  }, [itemId]);
   
   if (loadingItem || loadingComments) {
     return (
       <View>
         <Animated.ScrollView ref={scrollRef} scrollEventThrottle={16}>
-          <AppLoading />
+          <AppLoading/>
         </Animated.ScrollView>
       </View>
     );
@@ -79,7 +87,7 @@ const Item = ({navigation, route}) => {
       <ItemTitle title={item['title']} author='Nicolas Maquiavelo'/>
       <ReviewSection reviews={comments}
       />
-      <MainButton title={I18n.t('bookAddReviewButton')} color='#141619' onPress={() => navigation.navigate('CommentForm')}/>
+      <MainButton title={I18n.t('bookAddReviewButton')} color='#141619' onPress={() => navigation.navigate('CommentForm', {itemId: itemId})}/>
     </Animated.ScrollView>
   </View>
   )};

@@ -1,7 +1,10 @@
 import React, { useState } from 'react';
-import { Pressable, View, Text, TextInput, ActivityIndicator, KeyboardAvoidingView } from 'react-native';
+import { Pressable, View, Text, Image, TextInput, ActivityIndicator, KeyboardAvoidingView } from 'react-native';
 import { firebaseAuth } from '../firebaseConfig';
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signInWithPopup } from 'firebase/auth';
+import baseStyles from '../baseStyles';
+import I18n from '../locales';
+import MainButton from '../Components/globalComponents/MainButton';
 // import SignInGoogle from '../Components/Auth';
 
 const Login = () => {
@@ -25,9 +28,7 @@ const Login = () => {
   const handleSignUp = () => {
     setLoading(true);
     createUserWithEmailAndPassword(auth, email, password)
-      .then((response) => {
-        console.log('Usuario creado');
-        console.log('response', response);
+      .then(() => {
         setLoading(false);
       })
       .catch((error) => {
@@ -39,28 +40,24 @@ const Login = () => {
   }
 
   return (
-    <View>
+    <View style={[baseStyles.softBackground, baseStyles.flexColumn, baseStyles.alignCenter]}>
+      <Image source={require('../assets/login-penguin.png')} style={[baseStyles.imageLogo, baseStyles.marginTop10]}/>
       <KeyboardAvoidingView behavior='padding'>
-        <TextInput
-          placeholder="email"
+        <TextInput style={[baseStyles.inputForm, baseStyles.marginTop10, {padding: 10, minWidth: 250}, baseStyles.darkerBackground,]}
+          placeholder={I18n.t('email')}
           value={email}
           onChangeText={setEmail}
         />
-        <TextInput
-          placeholder="password"
+        <TextInput style={[baseStyles.inputForm, {padding: 10, minWidth: 250}, baseStyles.darkerBackground,]}
+          placeholder={I18n.t('password')}
           value={password}
           onChangeText={setPassword}
           secureTextEntry
         />
         {loading ? <ActivityIndicator size='large' color='#0000ff'/> :
-        <View>
-          <Pressable onPress={handleLogin}>
-            <Text>Iniciar sesión</Text>
-          </Pressable>
-          {/* <SignInGoogle /> */}
-          <Pressable onPress={handleSignUp}>
-            <Text>Registrarse</Text>
-          </Pressable>
+        <View style={[baseStyles.flexRow]}>
+          <MainButton title={I18n.t('logIn')} color='#141619' onPress={handleLogin} style={[{width: '50%'}]}/>
+          <MainButton title={I18n.t('SignUp')} color='#141619' onPress={handleSignUp} style={[{width: '50%'}]}/>
         </View>
         }
       </KeyboardAvoidingView>

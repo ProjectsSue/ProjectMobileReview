@@ -1,11 +1,12 @@
 import { FlatList, View, Text } from 'react-native';
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import ItemCard from './ItemCard';
 import baseStyles from '../../baseStyles';
 import AddButton from '../globalComponents/AddButton';
 import firestore from '@react-native-firebase/firestore';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import AppLoading from '../../AppLoading';
+import { CategoryContext } from '../../appContexts';
 
 
 
@@ -17,10 +18,12 @@ const ItemList = ({navigation}) => {
   //   const sessionUser =  response != null ? JSON.parse(response) : null;
   //   setLoading(false);
   // });
+  const currentCategory = useContext(CategoryContext).currentCategory;
 
   useEffect(() => {
     const subscriber = firestore()
       .collection('Items')
+      .where('category', '==', currentCategory)
       .onSnapshot(querySnapshot => {
         const itemList = [];
         const itemIds = [];
@@ -57,7 +60,7 @@ const ItemList = ({navigation}) => {
   
     // Unsubscribe from events when no longer in use
     return () => subscriber();
-  }, []);
+  }, [currentCategory]);
 
 
   if (loading) {
