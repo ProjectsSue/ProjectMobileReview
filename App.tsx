@@ -53,13 +53,7 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#fff',
     alignItems: 'center',
-<<<<<<< HEAD
   }
 });
 
 export default App;
-=======
-    justifyContent: 'center',
-  }
-});
->>>>>>> origin/main
