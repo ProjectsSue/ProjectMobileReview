@@ -1,27 +1,59 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, TextInput, View } from 'react-native';
-import ItemTitle from './Item/Title';
-import ItemImage from './Item/Image';
-import ItemRating from './Item/Rating';
-import ItemDescription from './Item/Description';
-import React from 'react';
+import 'react-native-gesture-handler';
+import { View, StyleSheet } from 'react-native';
+import React, { useEffect, useState, createContext } from 'react';
+import AppLoading from './AppLoading';
+import DrawerNavigator from './DrawerNavigator';
+import { NavigationContainer } from '@react-navigation/native';
+import { onAuthStateChanged } from 'firebase/auth';
+import { firebaseAuth } from './firebaseConfig';
+import Login from './screens/login';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import baseStyles from './baseStyles';
+import { UserContext, CategoryContext } from './appContexts';
+import { singleQuery } from './Utils/firestoreQuery';
 
-export default function App() {
-  return (
-    <View style={styles.container}>
-      <ItemTitle name='Item Name'/>
-      <ItemImage imageSource='https://d33wubrfki0l68.cloudfront.net/554c3b0e09cf167f0281fda839a5433f2040b349/ecfc9/img/header_logo.svg'/>
-      <ItemRating rate='50'/>
-      <ItemDescription description='This is a description'/>
-      <StatusBar style="auto" />
-    </View>
-  );
+const Stack = createNativeStackNavigator();
+
+const App = () => {
+  const [loading, setLoading] = useState(false);
+  const [user, setUser] = useState(undefined);
+  const [currentCategory, setCurrentCategory] = useState('book');
+    useEffect(() => {
+      const unsubscribe = onAuthStateChanged(firebaseAuth, async (user) => {
+        singleQuery('Users', user.uid).then((firestoreUser) => {
+          setUser(firestoreUser);
+          setLoading(false);
+        });
+      });
+      return unsubscribe;
+    }, []);
+  if (loading) {
+    return (
+      <NavigationContainer>
+        <View style={baseStyles.softBackground}>
+          <AppLoading />
+        </View>
+      </NavigationContainer>
+    );
+  } else {
+    return (
+      <NavigationContainer>
+          { user ? <UserContext.Provider value={user}><CategoryContext.Provider value={{currentCategory, setCurrentCategory}}><DrawerNavigator/></CategoryContext.Provider></UserContext.Provider>:
+            <Stack.Navigator initialRouteName='Login'>
+              <Stack.Screen name='Login' component={Login}/>
+            </Stack.Navigator>
+          }
+      </NavigationContainer>
+    );
+  }
 }
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
     alignItems: 'center',
-    justifyContent: 'center',
   }
 });
+
+export default App;
