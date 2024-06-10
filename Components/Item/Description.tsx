@@ -1,10 +1,11 @@
 import PropTypes from 'prop-types'; 
 import React from 'react';
 import { StyleSheet, TextInput, View } from 'react-native';
+import baseStyles from '../../baseStyles';
 
 const ItemDescription = (props) => {
   return (
-    <View>
+    <View style={baseStyles.whiterBackground}>
       <TextInput style={styles.description} defaultValue={props.description}/>
     </View>
   );
@@ -18,9 +19,8 @@ const styles = StyleSheet.create({
   /* Description */
   description: {
     marginBottom: 20,
-    border: 1,
-    padding: 5,
     fontSize: 16,
+    height: 1000,
   }
 });
 

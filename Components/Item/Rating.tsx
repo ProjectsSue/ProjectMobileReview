@@ -1,19 +1,24 @@
 import PropTypes from 'prop-types'; 
 import React from 'react';
 import { StyleSheet, Text, TextInput, View } from 'react-native';
+import baseStyles from '../../baseStyles';
 
 const ItemRating = (props) => {
   return (
-    <View>
+    <View style={baseStyles.whiterBackground}>
       <Text style={styles.ratingLabel}>Rating</Text>
       <View style={styles.ratingBar}/>
-      <TextInput style={styles.ratingInput} keyboardType = 'numeric' defaultValue={props.rate}/>
+      <TextInput 
+        style={styles.ratingInput}
+        keyboardType = 'numeric'
+        defaultValue={props.rate}
+      />
     </View>
   );
 }
 
 ItemRating.propTypes = {
-  rate: PropTypes.string.isRequired,
+  rate: PropTypes.string.isRequired
 };
 
 const styles = StyleSheet.create({
@@ -32,8 +37,6 @@ const styles = StyleSheet.create({
   ratingInput: {
     width: 50,
     height: 30,
-    border: 1,
-    padding: 5,
     fontSize: 16,
   }
 });
