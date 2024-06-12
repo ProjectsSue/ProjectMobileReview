@@ -73,5 +73,6 @@ export const en = {
   email: 'email',
   password: 'password',
   editProfile: 'Edit Profile',
-  profileEditor: 'Profile Editor'
+  profileEditor: 'Profile Editor',
+  spoilersFilter: 'Show Spoilers',
 }

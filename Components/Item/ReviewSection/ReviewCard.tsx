@@ -10,7 +10,8 @@ const ReviewCard = (props) => {
   const [expandedHeight, setExpandedHeight] = useState(0);
   const [expanded, setExpanded] = useState(false);
   const animatedHeight = useSharedValue(0);
-
+  const reviewPicture = props.review.anonymous ? require('../../../assets/profile_picture_default.jpeg') : {uri: props.review.authorPicture};
+  const reviewAuthor = props.review.anonymous ? I18n.t('anonymousTag') : props.review.authorName;
   const onLayout = (event: LayoutChangeEvent) => {
     const onLayoutHeight = event.nativeEvent.layout.height;
 
@@ -27,26 +28,27 @@ const ReviewCard = (props) => {
     };
   }, [expanded, expandedHeight]);
   
-const ExpandIcon = () => {
-    if (expandedHeight > 35) {
-      return (
-        <View style={[styles.icon]}>
-          <Ionicons name={expanded ? "chevron-up-outline" : "chevron-down-outline" }
-                    onPress={() => setExpanded(!expanded)}
-                    size={16}
-                    color="grey"
-                    style={[baseStyles.marginRight10]}/>
-        </View>
-      )
+  const ExpandIcon = () => {
+      if (expandedHeight > 35) {
+        return (
+          <View style={[styles.icon]}>
+            <Ionicons name={expanded ? "chevron-up-outline" : "chevron-down-outline" }
+                      onPress={() => setExpanded(!expanded)}
+                      size={16}
+                      color="grey"
+                      style={[baseStyles.marginRight10]}/>
+          </View>
+        )
+      }
     }
-  }
+    
   return (
     <Animated.View style={[baseStyles.whiterBackground, baseStyles.card, styles.cardList, { overflow: "hidden" }]}>
       <View style={[baseStyles.flexRow, baseStyles.alignCenter]}>
-        <Image style={styles.authorPicture} source={{uri: props.review.authorPicture}}/>
+        <Image style={styles.authorPicture} source={reviewPicture}/>
         <View style={[baseStyles.flexColumn, baseStyles.justifyCenter]}>
           <Text style={[baseStyles.minorTitle]}>
-            {props.review.author}
+            {reviewAuthor}
           </Text>
           <Text style={[baseStyles.minorSubtitle, baseStyles.greyColor]}>
             {I18n.t('score')} {props.review.score}
@@ -68,6 +70,7 @@ ReviewCard.propTypes = {
     id: PropTypes.number,
     authorName: PropTypes.string,
     authorPicture: PropTypes.string,
+    anonymous: PropTypes.bool,
     score: PropTypes.number,
     comment: PropTypes.string,
   }),
