@@ -21,7 +21,7 @@ const ItemForm = ({navigation, route}) => {
       author: author,
       title: title,
       image: image,
-      category: currentCategory+'',
+      category: currentCategory,
     }).then(() => {
       console.log('Item created');
       navigation.goBack()

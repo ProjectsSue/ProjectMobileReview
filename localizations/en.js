@@ -59,6 +59,11 @@ export const en = {
       reviewPlaceholder: 'Write your review of the game here',
     },
   },
+  profileForm: {
+    name: 'Name',
+    profilePicture: 'Profile Image',
+    update: 'Update Profile'
+  },
   addReview: 'Add your Review!',
   spoilersTag: 'Has spoilers',
   anonymousTag: 'Anonymous',
@@ -67,4 +72,6 @@ export const en = {
   SignUp: 'Sign Up',
   email: 'email',
   password: 'password',
+  editProfile: 'Edit Profile',
+  profileEditor: 'Profile Editor'
 }
