@@ -59,6 +59,11 @@ export const es = {
       reviewPlaceholder: 'Escribe tu comentario del juego aquí',
     },
   },
+  profileForm: {
+    name: 'Nombre',
+    profilePicture: 'Imagen de Perfil',
+    update: 'Actualizar Perfil'
+  },
   addReview: '¡Añade tu Comentario!',
   spoilersTag: 'Tiene spoilers',
   anonymousTag: 'Anónimo',
@@ -67,4 +72,6 @@ export const es = {
   SignUp: 'Registrarse',
   email: 'email',
   password: 'contraseña',
+  editProfile: 'Editar Perfil',
+  profileEditor: 'Editor de Perfil'
 }

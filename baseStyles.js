@@ -24,6 +24,9 @@ export default StyleSheet.create({
   marginTop10: {
     marginTop: 10,
   },
+  marginTop25: {
+    marginTop: 25,
+  },
   marginBottom5: {
     marginBottom: 5,
   },
