@@ -21,6 +21,7 @@ const ItemList = ({navigation}) => {
   const currentCategory = useContext(CategoryContext).currentCategory;
 
   useEffect(() => {
+    setLoading(true);
     const subscriber = firestore()
       .collection('Items')
       .where('category', '==', currentCategory)

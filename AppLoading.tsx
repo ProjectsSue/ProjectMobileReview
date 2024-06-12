@@ -1,21 +1,21 @@
 import React from 'react';
-import { Text, StyleSheet, View , Image} from 'react-native';
+import { Dimensions, View , Image} from 'react-native';
+import baseStyles from './baseStyles';
 
-const MainButton = (props) => {
+const windowWidth = Dimensions.get('window').width;
+const imageHeight = Dimensions.get('window').height;
+
+const AppLoading = (props) => {
+  const images = [require('./assets/loading_p_1.jpeg'), require('./assets/loading_p_2.jpeg')]
+  const numberPicked = Math.floor(Math.random() * images.length + 1)
   const incomingStyle = Array.isArray(props.style) ? props.style : [props.style];
+  
   return ( 
-    <View style={[styles.mainButton, ...incomingStyle]}>
-      <Image source={{uri: 'https://images.fineartamerica.com/images/artworkimages/mediumlarge/2/portrait-of-a-chinstrap-penguin-by-alan-m-hunt-alan-m-hunt.jpg'}}/>
+    <View style={[baseStyles.softBackground, ...incomingStyle]}>
+      <Image style={{width: windowWidth, height: imageHeight}}
+          source={images[numberPicked]}/>
     </View>
   )
 };
 
-const styles = StyleSheet.create({
-  mainButton: {
-    borderRadius: 5,
-    padding: 10,
-    marginVertical: 10,
-  },  
-});
-
-export default MainButton;
+export default AppLoading;
