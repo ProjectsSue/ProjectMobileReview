@@ -18,6 +18,8 @@
     "@react-navigation/drawer": "^6.6.15",
     "@react-navigation/native": "^6.1.17",
     "@react-navigation/native-stack": "^6.9.26",
+    "@rneui/base": "^4.0.0-rc.8",
+    "@rneui/themed": "^4.0.0-rc.8",
     "@stencil/core": "^2.9.0",
     "async-storage": "^0.1.0",
     "expo": "~51.0.6",

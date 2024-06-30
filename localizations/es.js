@@ -15,7 +15,8 @@ export const es = {
       titlePlaceholder: 'Añade el nombre del libro',
       creatorPlaceholder: 'Añade el autor del libro',
       imagePlaceholder: 'Introduce la URL de la portada del libro',
-      addItem: '¡Crear nuevo libro!'
+      addItem: '¡Crear nuevo libro!',
+      updateItem: '¡Actualizar libro!'
     },
     reviewForm: {
       reviewPlaceholder: 'Escribe tu comentario del libro aquí',
@@ -34,7 +35,8 @@ export const es = {
       titlePlaceholder: 'Añade el nombre de la película',
       creatorPlaceholder: 'Añade el director de la película',
       imagePlaceholder: 'Introduce la URL del póster de la película',
-      addItem: '¡Crear nueva película!'
+      addItem: '¡Crear nueva película!',
+      updateItem: '¡Actualizar película!',
     },
     reviewForm: {
       reviewPlaceholder: 'Escribe tu comentario de la película aquí',
@@ -53,7 +55,8 @@ export const es = {
       titlePlaceholder: 'Añade el nombre del juego',
       creatorPlaceholder: 'Añade el desarrollador del juego',
       imagePlaceholder: 'Introduce la URL de la portada del juego',
-      addItem: '¡Crear nuevo juego!'
+      addItem: '¡Crear nuevo juego!',
+      updateItem: '¡Actualizar juego!'
     },
     reviewForm: {
       reviewPlaceholder: 'Escribe tu comentario del juego aquí',
@@ -65,6 +68,7 @@ export const es = {
     update: 'Actualizar Perfil'
   },
   addReview: '¡Añade tu Comentario!',
+  updateReview: '¡Actualiza tu Comentario!',
   spoilersTag: 'Tiene spoilers',
   anonymousTag: 'Anónimo',
   hiddenTag: 'Oculto',
@@ -75,4 +79,5 @@ export const es = {
   editProfile: 'Editar Perfil',
   profileEditor: 'Editor de Perfil',
   spoilersFilter: 'Mostrar Spoilers',
+  search: 'Buscar...',
 }

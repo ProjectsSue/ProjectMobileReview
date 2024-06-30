@@ -15,7 +15,8 @@ export const en = {
       titlePlaceholder: 'Add the name of the book',
       creatorPlaceholder: 'Add the author of the book',
       imagePlaceholder: 'Enter the URL of the book cover',
-      addItem: 'Create new Book!'
+      addItem: 'Create new Book!',
+      updateItem: 'Update Book!'
     },
     reviewForm: {
       reviewPlaceholder: 'Write your review of the book here',
@@ -34,7 +35,8 @@ export const en = {
       titlePlaceholder: 'Add the name of the movie',
       creatorPlaceholder: 'Add the director of the movie',
       imagePlaceholder: 'Enter the URL of the movie poster',
-      addItem: 'Create new Movie!'
+      addItem: 'Create new Movie!',
+      updateItem: 'Update Movie!'
     },
     reviewForm: {
       reviewPlaceholder: 'Write your review of the movie here',
@@ -53,7 +55,8 @@ export const en = {
       titlePlaceholder: 'Add the name of the game',
       creatorPlaceholder: 'Add the developer of the game',
       imagePlaceholder: 'Enter the URL of the game cover',
-      addItem: 'Create new Game!'
+      addItem: 'Create new Game!',
+      updateItem: 'Update Game!'
     },
     reviewForm: {
       reviewPlaceholder: 'Write your review of the game here',
@@ -65,6 +68,7 @@ export const en = {
     update: 'Update Profile'
   },
   addReview: 'Add your Review!',
+  updateReview: 'Update your Review!',
   spoilersTag: 'Has spoilers',
   anonymousTag: 'Anonymous',
   hiddenTag: 'Hidden',
@@ -75,4 +79,5 @@ export const en = {
   editProfile: 'Edit Profile',
   profileEditor: 'Profile Editor',
   spoilersFilter: 'Show Spoilers',
+  search: 'Search...',
 }

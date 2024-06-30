@@ -18,7 +18,6 @@ const Login = () => {
     setLoading(true);
     signInWithEmailAndPassword(auth, email, password)
       .catch((error) => {
-        console.log(error);
       })
       .finally(() => {
         setLoading(false);

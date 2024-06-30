@@ -7,8 +7,8 @@ const windowWidth = Dimensions.get('window').width;
 
 const ItemTitle = (props) => {
   return (
-    <View style={baseStyles.whiterBackground}>
-      <Text style={styles.mainTitle}>
+    <View style={[baseStyles.softBackground]}>
+      <Text style={[styles.mainTitle]}>
         {props.title}
       </Text>
       <Text style={[styles.author, baseStyles.greyColor]}>

@@ -12,7 +12,7 @@ const ItemTitle = (props) => {
   ));
 
   return (
-    <View style={[baseStyles.whiterBackground, styles.info]}>
+    <View style={[baseStyles.softBackground, styles.info]}>
       <Text style={[baseStyles.greyColor, baseStyles.marginRight5, baseStyles.marginLeft5]}>
         {props.createdAt}
       </Text>

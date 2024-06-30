@@ -8,7 +8,8 @@ import baseStyles from '../../baseStyles';
 const ItemCard = (props) => {
   return ( 
     <TouchableOpacity style={[styles.container, baseStyles.softBackground]}
-          onPress={() => props.navigation.navigate('Item', {itemId: props.id})}>
+          onPress={() => props.navigation.navigate('Item', {itemId: props.id})}
+          onLongPress={() => props.navigation.navigate('ItemForm', {itemId: props.id})}>
       <Image
         source={{uri: props.image}}
         style={styles.image}

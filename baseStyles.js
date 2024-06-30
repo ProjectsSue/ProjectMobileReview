@@ -94,6 +94,9 @@ export default StyleSheet.create({
   alignCenter: {
     alignItems: 'center',
   },
+  selfCenter: {
+    alignSelf: 'center',
+  },
   justifyCenter: {
     justifyContent: 'center',
   },

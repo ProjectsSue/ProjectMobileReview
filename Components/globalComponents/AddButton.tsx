@@ -1,23 +1,19 @@
 import React from 'react';
-import { StyleSheet, Text, View, Pressable } from 'react-native';
+import { StyleSheet, Text, Dimensions, Pressable } from 'react-native';
 import baseStyles from '../../baseStyles';
+const windowHeight = Dimensions.get('window').height;
 
 const AddButton = (props) => {
   const incomingStyle = Array.isArray(props.style) ? props.style : [props.style];
   return ( 
-    <View style={[styles.comment, ...incomingStyle]}>
-      <Pressable style={[styles.cornerButton]} onPress={() => props.navigation.navigate('ItemForm')}>
-        <Text style={[styles.buttonText]}>+</Text>
-      </Pressable>
-    </View>
+    <Pressable style={[styles.cornerButton, baseStyles.alignCenter, ...incomingStyle]} onPress={() => props.navigation.navigate('ItemForm')}>
+      <Text style={[styles.buttonText]}>+</Text>
+    </Pressable>
   )
 };
 
 const styles = StyleSheet.create({
   cornerButton: {
-    position: 'absolute',
-    right: 20,
-    bottom: 30,
     backgroundColor: '#141619',
     borderRadius: 50,
     width: 60,
@@ -26,9 +22,7 @@ const styles = StyleSheet.create({
   buttonText: {
     color: '#F2F2F2',
     fontSize: 35,
-    position: 'absolute',
     top: '8%',
-    right: '34%',
     // transform: [{translateX: 50}, {translateY: -50}],
   },
 });

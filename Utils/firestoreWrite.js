@@ -7,3 +7,7 @@ export const createObject = (collectionName, data) => {
 export const updateObject = (collectionName, objectId, data) => {
   return firestore().collection(collectionName).doc(objectId).update(data)
 };
+
+export const deleteObject = (collectionName, objectId) => {
+  return firestore().collection(collectionName).doc(objectId).delete()
+};

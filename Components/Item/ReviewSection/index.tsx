@@ -6,7 +6,7 @@ import ReviewCard from './ReviewCard';
 
 const ReviewSection = (props) => {
     const InfoListText = props.reviews.map(review => (
-      <ReviewCard key={review['id']} review={review}/>
+      <ReviewCard key={review['id']} review={review} navigation={props.navigation}/>
   ));
 
   return (
@@ -17,7 +17,8 @@ const ReviewSection = (props) => {
 }
 
 ReviewSection.propTypes = {
-  reviews: PropTypes.array
+  reviews: PropTypes.array,
+  navigation: PropTypes.object
 };
 
 export default ReviewSection;
